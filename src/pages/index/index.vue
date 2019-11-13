@@ -1,304 +1,230 @@
 <template>
-  <view>
-    <view class="QS-tabs-box">
-      <QSTabs
-        ref="tabs"
-        :tabs="tabs"
-        fontSize="32"
-        width="150"
-        defaultColor="#333"
-        activeColor="#46A3FF"
-        animationLineWidth="30"
-        :current="current"
-        @change="change"
-        swiperWidth="750"
+  <!-- <skeleton
+  loading="{{ skeletonSelectedLoadingType }}"
+  bgcolor="{{ skeletonBgcolor }}"
+  isDev="{{ skeletonIsDev }}"
+  data="{{ skeletonData }}"
+  wx:if="{{ !pageIsReady || skeletonIsDev }}"
+></skeleton> -->
+
+  <view class="container skeleton">
+    <!-- 搜索框 -->
+    <search-com
+      @search-method="searchFun"
+      :seaText="searchValue"
+      class="skeleton-rect"
+    ></search-com>
+
+    <view class="bannerView">
+      <!-- 轮播图 -->
+      <swiper
+        class="bannerBox"
+        autoplay
+        circular
+        previous-margin="35rpx"
+        next-margin="35rpx"
+        @change="bannerChange"
       >
-      </QSTabs>
+        <block v-for="(item, idx) in wheelData" :key="idx">
+          <swiper-item class="b_item" :data-id="item.filmId" @tap="toDetailOne">
+            <image :src="item.shuffleImg" class="b_img skeleton-rect"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- 显示面板指示点 -->
+      <view class="dotBox">
+        <block v-for="(item, idx) in wheelData" :key="idx">
+          <text :class="'lineBox ' + (idx == bSelIdx ? 'sel' : '')"></text>
+        </block>
+      </view>
     </view>
-    <!-- 滑动展示区 -->
-    <swiper
-      :style="{ height: '1200rpx' }"
-      :current="current"
-      @change="swiperChange"
-      @transition="transition"
-      @animationfinish="animationfinish"
-    >
-      <swiper-item
-        class="swiper-item"
-        v-for="(item, index) in tabs"
-        :key="index"
-      >
-        <view>
-          <!-- 搜索 -->
-          <view class="search">
-            <image
-              src="../../static/zy-search/search.svg"
-              mode="aspectFit"
-              class="voice-icon"
-            ></image>
-            <text class="placeholder">搜索关键词</text>
-          </view>
-          <!-- 搜索 -->
-          <!-- banner-swiper -->
-          <swiper class="bannerSwiper" indicator-dots="true" autoplay="true">
-            <block v-for="(item, index) in tabs" :key="index">
-              <swiper-item class="bannerItem">
-                <image
-                  mode="aspectFit"
-                  src="../../static/Banner map.png"
-                ></image>
-              </swiper-item>
-            </block>
-          </swiper>
-          <!-- swiper -->
 
-          <!-- 类别title -->
-          <view class="title-url flex">
-            <text class="font-32">推荐电影</text>
-            <view class="font-26 flex bettew">
-              <text @click="toMovieList()">
-                全部1314
-              </text>
-              <text class="triangle"></text>
+    <!-- 电影系列 -->
+    <view class="recomView" v-for="(item, idx) in valueData" :key="idx">
+      <view class="reTil skeleton-rect">
+        <text class="lineBox line"></text>
+        <text class="r_text">{{ item.labelName }}</text>
+      </view>
+      <scroll-view scroll-x class="reCnView">
+        <block v-for="(item, idx) in item.films" :key="idx">
+          <view
+            class="r_list skeleton-rect"
+            :data-id="item.id"
+            @tap="toDetailTwo"
+          >
+            <view class="imgBox">
+              <image :src="item.coverBill"></image>
+              <text class="score">评分：{{ item.score }}</text>
             </view>
+            <view class="m_til eli_one">{{ item.name }}</view>
+            <view class="issBtn">发布</view>
           </view>
-          <!-- title -->
-
-          <scroll-view class="scroll-x" scroll-x="true" style="height: 402upx;">
-            <view class="x-flex-row">
-              <block v-for="(item, index) in tabs" :key="index">
-                <view class="x-item">
-                  <view class="x-img" @tap="toDetail()">
-                    <image
-                      mode="aspectFill"
-                      src="../../static/movie2.png"
-                    ></image>
-                    <text class="movie-score">9.0</text>
-                  </view>
-                  <view class="x-title">
-                    追龙
-                  </view>
-                  <view class="x-btn" @click="toPublish()">
-                    发布
-                  </view>
-                </view>
-              </block>
-            </view>
-          </scroll-view>
-        </view>
-      </swiper-item>
-    </swiper>
+        </block>
+      </scroll-view>
+    </view>
   </view>
 </template>
 
 <script>
-import QSTabs from "../../components/QS-tabs/QS-tabs.vue";
+//index.js
+//获取应用实例
+// 引入request
+const Http = require("../../utils/httpRequest.js"); // const skeletonData = require('./skeletonData');
+import searchCom from "../../components/searchCom/searchCom";
 
-const Sys = uni.getSystemInfoSync();
-console.log(JSON.stringify(Sys));
-const wH = Sys.windowHeight;
 export default {
-  components: {
-    QSTabs
-  },
   data() {
     return {
-      tabs: ["热播", "剧情", "冒险", "动画", "青春", "校园", "科幻", "动作"],
-      current: 0,
-      tabsHeight: 0,
-      dx: 0,
-      itemData:''
+      // skeletonData: skeletonData,
+      bSelIdx: 0,
+      //指示面板下标
+      valueData: [],
+      //首页电影系列的数据
+      run: false,
+      //false跑onload，true跑onshow
+      id: "",
+      //跳转电影详情的id
+      wheelData: [], //轮播数据
+      searchValue: ""
     };
   },
+
+  components: {
+    searchCom
+  },
+  props: {},
+  // 去掉这条也是没问题的
+  onLoad: function() {
+    getApp().globalData.page.skeletonInitial(this);
+
+    if (this.run == false) {
+      this.getIndexData();
+      this.getWheel();
+      setTimeout(() => {
+        this.setData({
+          run: true
+        });
+      }, 500);
+    }
+  },
+  onShow: function() {
+    Http.$get(`films/getShuffles`).then(res => {
+      this.setData({
+        wheelData: res.data
+      });
+    }); //获取对应 站长的一部影片排期
+
+    Http.$get(`issuer/webMasterOneFilmScenes`, {
+      filmId: "16",
+      sessionID: "31718412337152 "
+    }).then(res => {
+      console.log(res);
+    });
+
+    if (this.run == true) {
+      this.getIndexData();
+      this.getWheel();
+    }
+
+    this.setData({
+      searchValue: ""
+    });
+  },
   methods: {
-    change(index) {
-      this.current = index;
-    },
-    swiperChange({ detail: { current } }) {
-      this.current = current;
-      console.log(this.current);
-      
-    },
-    transition({ detail: { dx } }) {
-      this.$refs.tabs.setDx(dx);
-    },
-    animationfinish({ detail: { current } }) {
-      this.$refs.tabs.setFinishCurrent(current);
-    },
-    toMovieList() {
-      uni.navigateTo({
-        url: "../movieList/movieList?listID=12"
+    //搜索
+    searchFun(ele) {
+      wx.navigateTo({
+        url:
+          "../../pages/searchResult/searchResult?value=" + JSON.stringify(ele)
       });
     },
 
-    //跳转详情
-    toDetail() {
-      uni.navigateTo({
-        url: "../detail/detail?movieID=1"
+    //轮播图改变
+    bannerChange(ele) {
+      this.setData({
+        bSelIdx: ele.detail.current
       });
     },
-    //跳转到发布页
-    toPublish() {
-      uni.navigateTo({
-        url: "../detail/detail"
+
+    // 点击轮播跳转对应的电影
+    toDetailOne(ele) {
+      this.setData({
+        id: ele.currentTarget.dataset.id
+      });
+      wx.navigateTo({
+        url: "../../pages/detail/detail?id=" + this.id
+      });
+    },
+
+    // 点击电影系列跳转对应的电影
+    toDetailTwo(ele) {
+      this.setData({
+        id: ele.currentTarget.dataset.id
+      });
+      wx.navigateTo({
+        url: "../../pages/detail/detail?id=" + this.id
+      });
+    },
+
+    // 进来获取轮播图数据
+    getWheel() {
+      Http.$get(`films/getShuffles`).then(res => {
+        this.setData({
+          wheelData: res.data
+        });
+      }); //获取对应 站长的一部影片排期
+
+      Http.$get(`issuer/webMasterOneFilmScenes`, {
+        filmId: "16",
+        sessionID: "31718412337152 "
+      }).then(res => {
+        console.log(res);
+      });
+    },
+
+    //   进来获取首页电影系列数据
+    getIndexData() {
+      Http.$get(`films/getLabelFilms`).then(res => {
+        if (res.code === 0) {
+          console.log(res);
+          this.setData({
+            valueData: res.data
+          });
+          getApp().globalData.page.closeSkeleton(this);
+        } else {
+          wx.showToast({
+            title: res.msg,
+            icon: "none",
+            duration: 3000
+          });
+        }
+      });
+    },
+
+    setData: function(obj) {
+      let that = this;
+      let keys = [];
+      let val, data;
+      Object.keys(obj).forEach(function(key) {
+        keys = key.split(".");
+        val = obj[key];
+        data = that.$data;
+        keys.forEach(function(key2, index) {
+          if (index + 1 == keys.length) {
+            that.$set(data, key2, val);
+          } else {
+            if (!data[key2]) {
+              that.$set(data, key2, {});
+            }
+          }
+
+          data = data[key2];
+        });
       });
     }
   }
 };
 </script>
-
-<style scoped>
-.flex {
-  display: flex;
-  align-items: center;
-}
-.QS-tabs-box {
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: white;
-  border-bottom: 1upx solid #e0e0e0;
-}
-.swiper-item {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  text-align: center;
-  padding: 0 30upx;
-  box-sizing: border-box;
-  /*background-color: #f1505c;*/
-}
-/* 搜索 */
-.search {
-  width: 100%;
-  height: 72upx;
-  margin: 20upx 0;
-  border: 1px solid rgba(70, 163, 255, 1);
-  border-radius: 36upx;
-  display: flex;
-  align-items: center;
-  font-size: 28upx;
-  color: #999;
-}
-.voice-icon {
-  width: 36upx;
-  height: 36upx;
-  margin-left: 60upx;
-  color: #007aff;
-}
-.placeholder {
-  margin-left: 30upx;
-}
-/* 搜索 */
-
-/* banner */
-.bannerSwiper {
-  width: 100%;
-  height: 335upx;
-  border-radius: 12upx;
-  overflow: hidden;
-}
-.bannerItem {
-  width: 100%;
-  height: 100%;
-  background: #bbb;
-}
-.bannerSwiper image {
-  width: 100%;
-  height: 100%;
-}
-/* banner */
-
-/* <!-- title跳转 --> */
-.title-url {
-  width: 100%;
-  height: 103upx;
-  text-align: center;
-  justify-content: space-between;
-  color: #333;
-}
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.bettew {
-  justify-content: space-between;
-}
-.font-32 {
-  font-size: 32upx;
-  font-weight: 500;
-}
-.font-26 {
-  font-size: 26upx;
-}
-.triangle {
-  display: block;
-  width: 15upx;
-  height: 15upx;
-  border-top: 1px solid #333;
-  border-right: 1px solid #333;
-  transform: rotate(45deg);
-}
-
-/* scroll-x */
-.scroll-x {
-}
-.x-flex-row {
-  display: flex;
-  flex-direction: row;
-}
-.x-item {
-  width: 218upx;
-  height: 402upx;
-  padding-right: 18upx;
-  float: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-.x-img {
-  width: 218upx;
-  height: 308upx;
-  border-radius: 12upx;
-  overflow: hidden;
-  position: relative;
-}
-.x-img image {
-  width: 100%;
-  height: 100%;
-}
-.movie-score {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 45upx;
-  height: 30upx;
-  line-height: 30upx;
-  border-radius: 12upx;
-  font-size: 18upx;
-  color: #fff;
-  background: #ff8034;
-}
-.x-title {
-  width: 66upx;
-  height: 25upx;
-  line-height: 25upx;
-  font-size: 26upx;
-  font-weight: 600;
-  color: rgba(51, 51, 51, 1);
-}
-.x-btn {
-  width: 120upx;
-  height: 45upx;
-  line-height: 45upx;
-  font-size: 26upx;
-  border-radius: 23upx;
-  text-align: center;
-  color: #fff;
-  background: rgba(70, 163, 255, 1);
-}
+<style>
+@import "./index.css";
 </style>

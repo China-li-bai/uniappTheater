@@ -1,3 +1,4 @@
+// 电影列表展示
 <template>
   <view id="lists">
     <block v-for="(item, index) in 8" :key="index">

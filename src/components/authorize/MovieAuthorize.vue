@@ -34,10 +34,8 @@ export default {
           console.log(res);
           // 2.把code传给后端换取token
           uni.request({
-            url:
-              "https://ssl.9jcloud.com/cinema/issuer/login?code=" +
-              res.code +
-              "&sessionId=",
+            url: "https://ssl.9jcloud.com/cinema/issuer/login?code=" + res.code,
+
             success: function(res) {
               console.log(res);
               const result = res.data;

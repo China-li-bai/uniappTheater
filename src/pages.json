@@ -28,13 +28,13 @@
     {
       "path": "pages/detail/detail",
       "style": {
-        "navigationBarTitleText": "影片详情"
+        "navigationBarTitleText": "影片简介"
       }
     },
     {
       "path": "pages/empower/empower",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "用户登录"
       }
     }
   ],
