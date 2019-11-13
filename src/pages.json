@@ -1,0 +1,71 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "空中影城"
+      }
+    },
+    {
+      "path": "pages/movieList/movieList",
+      "style": {
+        "navigationBarTitleText": "推荐电影"
+      }
+    },
+    {
+      "path": "pages/myself/myself",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/myVideos/myVideos",
+      "style": {
+        "navigationBarTitleText": "已播电影"
+      }
+    },
+
+    {
+      "path": "pages/detail/detail",
+      "style": {
+        "navigationBarTitleText": "影片详情"
+      }
+    },
+    {
+      "path": "pages/empower/empower",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    }
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home_sel.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/myVideos/myVideos",
+        "iconPath": "static/images/class.png",
+        "selectedIconPath": "static/images/class_sel.png",
+        "text": "已播电影"
+      },
+      {
+        "pagePath": "pages/myself/myself",
+        "iconPath": "static/images/me.png",
+        "selectedIconPath": "static/images/me_sel.png",
+        "text": "我的"
+      }
+    ],
+    "color": "#666666",
+    "selectedColor": "#46A3FF"
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "空中影城",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
+}
