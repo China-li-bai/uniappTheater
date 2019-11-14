@@ -25,20 +25,25 @@
             <view class="type skeleton-rect"
               >本月出票 <text class="playRed"> 88 </text> 张</view
             >
-            <view class="price skeleton-rect"
-              ><text class="playRed">￥5.00</text></view
-            >
+            <view class="type skeleton-rect"><text>￥5.00</text></view>
+            <view class="issBtn">发布</view>
+            <view class="toCheck">查看发布场次 ></view>
           </view>
-          <view class="issBtn skeleton-rect">发布</view>
         </view>
       </block>
       <view class="placeholder" v-if="show">
         <view v-if="completeType">
-          <image src="../../images/Success.png" class="successIcon"></image>
+          <image
+            src="../../static/images/success.png"
+            class="successIcon"
+          ></image>
           <text class="loadingText">加载完毕!</text>
         </view>
         <view v-else>
-          <image src="../../images/loadmore.gif" class="successIcon"></image>
+          <image
+            src="../../static/images/loadmore.gif"
+            class="successIcon"
+          ></image>
           <text class="loadingText">加载中...</text>
         </view>
       </view>
@@ -312,6 +317,7 @@ export default {
   color: #666;
   font-size: 28rpx;
   letter-spacing: 2rpx;
+  position: relative;
 }
 
 .movieList .imgView {
@@ -342,10 +348,9 @@ export default {
   font-weight: 500;
   color: #333;
 }
-.type,
-.price {
+.type {
   height: 27rpx;
-  margin-top: 27rpx;
+  margin-top: 26rpx;
 }
 .play {
   margin-left: 15rpx;
@@ -353,10 +358,43 @@ export default {
 .playRed {
   color: red;
 }
-.movieMsg .issBtn {
+
+.issBtn {
   width: 120rpx;
   height: 60rpx;
   line-height: 60rpx;
-  border-radius: 30px;
+  border-radius: 30rpx;
+  text-align: center;
+  background: #46a3ff;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: 136rpx;
+}
+.toCheck {
+  text-align: center;
+  color: #46a3ff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.placeholder {
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #f4f4f4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.loadingText {
+  padding: 0 10rpx;
+  color: #acacac;
+}
+.successIcon {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
 }
 </style>
