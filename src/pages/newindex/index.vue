@@ -64,7 +64,7 @@
           </view>
           <!-- title -->
 
-          <scroll-view class="scroll-x" scroll-x="true" style="height: 402upx;">
+          <scroll-view class="scroll-x" scroll-x="true" style="height: 402rpx;">
             <view class="x-flex-row">
               <block v-for="(item, index) in tabs" :key="index">
                 <view class="x-item">
@@ -158,7 +158,7 @@ export default {
   top: 0;
   z-index: 10;
   background-color: white;
-  border-bottom: 1upx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
 }
 .swiper-item {
   width: 100%;
@@ -166,38 +166,38 @@ export default {
   display: flex;
   flex-flow: column;
   text-align: center;
-  padding: 0 30upx;
+  padding: 0 30rpx;
   box-sizing: border-box;
   /*background-color: #f1505c;*/
 }
 /* 搜索 */
 .search {
   width: 100%;
-  height: 72upx;
-  margin: 20upx 0;
+  height: 72rpx;
+  margin: 20rpx 0;
   border: 1px solid rgba(70, 163, 255, 1);
-  border-radius: 36upx;
+  border-radius: 36rpx;
   display: flex;
   align-items: center;
-  font-size: 28upx;
+  font-size: 28rpx;
   color: #999;
 }
 .voice-icon {
-  width: 36upx;
-  height: 36upx;
-  margin-left: 60upx;
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 60rpx;
   color: #007aff;
 }
 .placeholder {
-  margin-left: 30upx;
+  margin-left: 30rpx;
 }
 /* 搜索 */
 
 /* banner */
 .bannerSwiper {
   width: 100%;
-  height: 335upx;
-  border-radius: 12upx;
+  height: 335rpx;
+  border-radius: 12rpx;
   overflow: hidden;
 }
 .bannerItem {
@@ -214,7 +214,7 @@ export default {
 /* <!-- title跳转 --> */
 .title-url {
   width: 100%;
-  height: 103upx;
+  height: 103rpx;
   text-align: center;
   justify-content: space-between;
   color: #333;
@@ -228,16 +228,16 @@ export default {
   justify-content: space-between;
 }
 .font-32 {
-  font-size: 32upx;
+  font-size: 32rpx;
   font-weight: 500;
 }
 .font-26 {
-  font-size: 26upx;
+  font-size: 26rpx;
 }
 .triangle {
   display: block;
-  width: 15upx;
-  height: 15upx;
+  width: 15rpx;
+  height: 15rpx;
   border-top: 1px solid #333;
   border-right: 1px solid #333;
   transform: rotate(45deg);
@@ -251,9 +251,9 @@ export default {
   flex-direction: row;
 }
 .x-item {
-  width: 218upx;
-  height: 402upx;
-  padding-right: 18upx;
+  width: 218rpx;
+  height: 402rpx;
+  padding-right: 18rpx;
   float: left;
   display: flex;
   flex-direction: column;
@@ -261,9 +261,9 @@ export default {
   justify-content: space-between;
 }
 .x-img {
-  width: 218upx;
-  height: 308upx;
-  border-radius: 12upx;
+  width: 218rpx;
+  height: 308rpx;
+  border-radius: 12rpx;
   overflow: hidden;
   position: relative;
 }
@@ -275,28 +275,28 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  width: 45upx;
-  height: 30upx;
-  line-height: 30upx;
-  border-radius: 12upx;
-  font-size: 18upx;
+  width: 45rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 12rpx;
+  font-size: 18rpx;
   color: #fff;
   background: #ff8034;
 }
 .x-title {
-  width: 66upx;
-  height: 25upx;
-  line-height: 25upx;
-  font-size: 26upx;
+  width: 66rpx;
+  height: 25rpx;
+  line-height: 25rpx;
+  font-size: 26rpx;
   font-weight: 600;
   color: rgba(51, 51, 51, 1);
 }
 .x-btn {
-  width: 120upx;
-  height: 45upx;
-  line-height: 45upx;
-  font-size: 26upx;
-  border-radius: 23upx;
+  width: 120rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  font-size: 26rpx;
+  border-radius: 23rpx;
   text-align: center;
   color: #fff;
   background: rgba(70, 163, 255, 1);

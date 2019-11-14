@@ -3,7 +3,7 @@
     <!-- 内容 -->
     <scroll-view class="contentView" @scrolltolower="lower" scroll-y>
       <block v-for="(item, idx) in menuList" :key="idx">
-        <view class="movieList div_float" :data-s-id="item.id" @tap="toDetail">
+        <view class="movieList" :data-s-id="item.id" @tap="toDetail">
           <view class="imgView skeleton-rect">
             <image mode="aspectFit" :src="item.coverBill"></image>
             <view class="atten">{{ item.score }}</view>
@@ -28,8 +28,8 @@
             <view class="price skeleton-rect"
               ><text class="playRed">￥5.00</text></view
             >
-            <view class="issBtn skeleton-rect">发布</view>
           </view>
+          <view class="issBtn skeleton-rect">发布</view>
         </view>
       </block>
       <view class="placeholder" v-if="show">
@@ -302,38 +302,50 @@ export default {
   box-sizing: border-box;
   margin-top: initial;
   margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: row;
 }
 .movieMsg {
-  max-width: 420rpx;
-  margin-left: 0rpx;
-  padding: 17rpx 30rpx;
+  flex: 1;
+  margin-left: 30rpx;
+  font-weight: 500;
+  color: #666;
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
 }
 
 .movieList .imgView {
   position: relative;
-  width: 225rpx;
-  height: 330rpx;
+  width: 218rpx;
+  height: 308rpx;
+}
+.imgView image {
+  width: 100%;
+  height: 100%;
 }
 
 .imgView .atten {
   width: 45rpx;
   height: 30rpx;
   line-height: 30rpx;
-  padding: 0;
-  margin: 0;
   text-align: center;
   background: rgba(255, 128, 52, 1);
   border-radius: 10rpx;
   font-size: 18rpx;
   color: #fff;
+  position: absolute;
   top: 0;
   right: 0;
-  left: auto;
 }
 .movieMsg .m_til {
-  font-family: PingFang SC;
+  font-size: 36rpx;
   font-weight: 500;
   color: #333;
+}
+.type,
+.price {
+  height: 27rpx;
+  margin-top: 27rpx;
 }
 .play {
   margin-left: 15rpx;

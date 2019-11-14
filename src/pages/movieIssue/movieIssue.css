@@ -1,0 +1,225 @@
+@import "../../pages/searchResult/searchResult";
+
+.container {
+    padding: 0.1rpx 0;
+    min-height: 99.5%;
+    background-color: white;
+}
+
+.seaCnBox {
+    padding-bottom: 0rpx;
+}
+
+.movieList  .imgView {
+    width: 323rpx;
+    height: 432rpx;
+}
+
+.imgView .atten {
+    padding-left: 13rpx;
+    bottom: 13rpx;
+    font-size: 32rpx;
+}
+
+.movieMsg .stratView {
+    margin-top: 20rpx;
+}
+
+.movieMsg {
+    width: 340rpx;
+    margin-left: 28rpx;
+}
+
+.movieMsg .m_til, .movieMsg .type {
+    font-size: 32rpx;
+}
+
+.movieMsg .type, .movieMsg .price {
+    margin-top: 37rpx;
+}
+
+.movieMsg .price {
+    font-size: 36rpx;
+}
+
+.issDateBox {
+    margin-top: 38rpx;
+}
+
+.issDateBox .isTil {
+    padding: 0 30rpx;
+    font-size: 34rpx;
+    color: #333;
+}
+
+.dateView {
+    margin-top: 19rpx;
+    white-space: nowrap;
+    height: 80rpx;
+    border-top: 2rpx solid #f5f5f5;
+    border-bottom: 2rpx solid #f5f5f5;
+}
+
+.dateView .d_list {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #333;
+    margin: 0 34rpx;
+}
+
+.dateView .sel {
+    color: #46a3ff;
+}
+
+.issDateBox .addTime {
+    width: 550rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    color: #333;
+    margin: 0 auto;
+    margin-top: 30rpx;
+    border-radius: 10rpx;
+    text-align: center;
+    border: 2rpx solid #46a3ff;
+    position: relative;
+}
+
+.picker {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.timeView {
+    margin-top: 50rpx;
+    text-align: center;
+    padding-bottom: 90rpx;
+}
+
+.timeView .t_list {
+    font-size: 28rpx;
+    color: #333;
+    margin-bottom: 28rpx;
+}
+
+.timeView .t_list text {
+    width: 25rpx;
+    height: 25rpx;
+    margin-right: 20rpx;
+    margin-top: -5rpx;
+}
+
+.createShare {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: white;
+    font-size: 32rpx;
+    z-index: 3;
+    text-align: center;
+    background-color: #46a3ff;
+    font-weight: bold;
+}
+.createShare2 {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: white;
+    font-size: 32rpx;
+    z-index: 3;
+    text-align: center;
+    background-color: #9e9e9e;
+    font-weight: bold;
+}
+
+.pickerLayer {
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+}
+
+.dataPicker {
+    position: fixed;
+    height: 408rpx;
+    width: 100%;
+    bottom: 0;
+    z-index: 4;
+}
+
+.dataPicker .p_head {
+    height: 80rpx;
+    line-height: 60rpx;
+    padding: 0 30rpx;
+    background-color: white;
+    border-top-left-radius: 15rpx;
+    border-top-right-radius: 15rpx;
+    display: flex;
+}
+
+.dataPicker .p_head .l {
+    float: left;
+    font-size: 28rpx;
+    width: 100rpx;
+    /* color: #46a3ff; */
+}
+
+.dataPicker .p_head .r {
+    float: right;
+    font-size: 28rpx;
+    width: 100rpx;
+    text-align: right;
+    color: #46a3ff;
+}
+
+.dataPicker picker-view {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.dataPicker picker-view-column {
+    width: 300rpx;
+    text-align: center;
+}
+
+.p_list {
+    color: #333;
+    font-size: 26rpx;
+    line-height: 34rpx;
+    position: relative;
+}
+
+.p_list view {
+    line-height: 34rpx;
+    position: absolute;
+    margin: auto;
+    height: 34rpx;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.m {
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 28rpx;
+}
+
+.movieMsg .type {
+    margin-top: 28rpx;
+    height: 29rpx;
+    line-height: 28rpx;
+}

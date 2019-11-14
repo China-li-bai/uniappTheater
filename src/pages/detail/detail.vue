@@ -13,7 +13,7 @@
             active-color="#FF8034"
             is-fill="false"
             max="5"
-            value=" detailValue.score"
+            :value="detailValue.score / 2"
           ></uni-rate
           ><text>{{ detailValue.score }} </text>
         </view>
