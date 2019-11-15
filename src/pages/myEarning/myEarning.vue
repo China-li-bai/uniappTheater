@@ -95,32 +95,54 @@
     <!-- 选择开始日期 -->
     <view class="pickerLayer fixedView" :hidden="startHidePicker">
       <!-- 旧版 -->
-      <!-- <view class="dataPicker {{animate1}}" style="animation-duration:0.5s;">
-            <view class="p_head">
-                <view class="l" bindtap="selTimeFun">取消</view>
-                <view>选择开始时间</view>
-                <view class="r" bindtap="startConfirmTime">确定</view>
+      <view class="dataPicker {{animate1}}" style="animation-duration:0.5s;">
+        <view class="p_head">
+          <view class="l" bindtap="selTimeFun">取消</view>
+          <view>选择开始时间</view>
+          <view class="r" bindtap="startConfirmTime">确定</view>
+        </view>
+        <picker-view
+          mask-class="pickerMask"
+          indicator-style
+          bindchange="startTimeChange"
+        >
+          <picker-view-column>
+            <view
+              wx:for="{{yearArr}}"
+              wx:for-index="idx"
+              wx:key="{{idx}}"
+              data-year="{{item}}"
+              class="p_list"
+            >
+              <view>{{ item }}</view>
             </view>
-            <picker-view mask-class="pickerMask" indicator-style bindchange="startTimeChange">
-                <picker-view-column>
-                    <view wx:for="{{yearArr}}" wx:for-index="idx" wx:key="{{idx}}" data-year="{{item}}" class="p_list">
-                        <view>{{item}}</view>
-                    </view>
-                </picker-view-column>
-                <picker-view-column>
-                    <view wx:for="{{12}}" wx:for-index="idx" wx:key="{{idx}}" data-month="{{item+1}}" class="p_list">
-                        <view>{{item+1}}</view>
-                    </view>
-                </picker-view-column>
-                <picker-view-column>
-                    <view wx:for="{{31}}" wx:for-index="idx" wx:key="{{idx}}" data-day="{{item+1}}" class="p_list">
-                        <view>{{item+1}}</view>
-                    </view>
-                </picker-view-column>
-            </picker-view>
-        </view> -->
+          </picker-view-column>
+          <picker-view-column>
+            <view
+              wx:for="{{12}}"
+              wx:for-index="idx"
+              wx:key="{{idx}}"
+              data-month="{{item+1}}"
+              class="p_list"
+            >
+              <view>{{ item + 1 }}</view>
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view
+              wx:for="{{31}}"
+              wx:for-index="idx"
+              wx:key="{{idx}}"
+              data-day="{{item+1}}"
+              class="p_list"
+            >
+              <view>{{ item + 1 }}</view>
+            </view>
+          </picker-view-column>
+        </picker-view>
+      </view>
       <!-- 新版 -->
-      <view :class="'dataPicker ' + animate1" style="animation-duration:0.5s;">
+      <!--    <view :class="'dataPicker ' + animate1" style="animation-duration:0.5s;">
         <datetime-picker
           title="开始时间"
           confirm-button-text="确定"
@@ -130,39 +152,69 @@
           @cancel="offBox"
           :min-date="minDate + ' '"
         ></datetime-picker>
-      </view>
+      </view> -->
     </view>
 
     <!-- 选择结束时间 -->
     <view class="pickerLayer fixedView " :hidden="endHidePicker">
       <!-- 旧版 -->
-      <!-- <view class="dataPicker {{animate2}} " style="animation-duration:0.5s; ">
-            <view class="p_head ">
-                <view class="l " bindtap="selTimeFun ">取消</view>
-                <view>选择结束时间</view>
-                <view class="r " bindtap="endConfirmTime ">确定</view>
+      <view class="dataPicker {{animate2}} " style="animation-duration:0.5s; ">
+        <view class="p_head ">
+          <view class="l " bindtap="selTimeFun ">取消</view>
+          <view>选择结束时间</view>
+          <view class="r " bindtap="endConfirmTime ">确定</view>
+        </view>
+        <picker-view
+          mask-class="pickerMask "
+          indicator-style
+          bindchange="endTimeChange "
+        >
+          <picker-view-column>
+            <view
+              wx:for="{{yearArr}} "
+              wx:for-index="idx "
+              wx:key="{{idx}} "
+              data-year="{{item}} "
+              class="p_list "
+            >
+              <view>{{ item }}</view>
             </view>
-            <picker-view mask-class="pickerMask " indicator-style bindchange="endTimeChange ">
-                <picker-view-column>
-                    <view wx:for="{{yearArr}} " wx:for-index="idx " wx:key="{{idx}} " data-year="{{item}} " class="p_list ">
-                        <view>{{item}}</view>
-                    </view>
-                </picker-view-column>
-                <picker-view-column>
-                    <view wx:for="{{12}} " wx:for-index="idx " wx:key="{{idx}} " data-month="{{item+1}} " class="p_list ">
-                        <view>{{item+1}}</view>
-                    </view>
-                </picker-view-column>
-                <picker-view-column>
-                    <view wx:for="{{31}} " wx:for-index="idx " wx:key="{{idx}} " data-day="{{item+1}} " class="p_list ">
-                        <view>{{item+1}}</view>
-                    </view>
-                </picker-view-column>
-            </picker-view>
-        </view> -->
+          </picker-view-column>
+          <picker-view-column>
+            <view
+              wx:for="{{12}} "
+              wx:for-index="idx "
+              wx:key="{{idx}} "
+              data-month="{{item+1}} "
+              class="p_list "
+            >
+              <view>{{ item + 1 }}</view>
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view
+              wx:for="{{31}} "
+              wx:for-index="idx "
+              wx:key="{{idx}} "
+              data-day="{{item+1}} "
+              class="p_list "
+            >
+              <view>{{ item + 1 }}</view>
+            </view>
+          </picker-view-column>
+        </picker-view>
+      </view>
       <!-- 新版 -->
       <view :class="'dataPicker ' + animate2" style="animation-duration:0.5s;">
-        <!-- <van-datetime-picker title="结束时间" confirm-button-text="确定" type="date" :value="currentDateEnd" @confirm="onInputEnd" @cancel="offBox" :min-date="minDateEnd"></van-datetime-picker> -->
+        <van-datetime-picker
+          title="结束时间"
+          confirm-button-text="确定"
+          type="date"
+          :value="currentDateEnd"
+          @confirm="onInputEnd"
+          @cancel="offBox"
+          :min-date="minDateEnd"
+        ></van-datetime-picker>
       </view>
     </view>
   </view>

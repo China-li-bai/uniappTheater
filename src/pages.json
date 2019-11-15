@@ -53,10 +53,7 @@
     {
       "path": "pages/myExports/myExports",
       "style": {
-        "navigationBarTitleText": "我的提成",
-        "usingComponents": {
-          "datetime-picker": "../../wxcomponents/vant/datetime-picker/index"
-        }
+        "navigationBarTitleText": "我的提成"
       }
     },
     {
