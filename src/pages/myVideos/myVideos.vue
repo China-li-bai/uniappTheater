@@ -2,7 +2,7 @@
   <view class="container skeleton">
     <!-- 内容 -->
     <scroll-view class="contentView" @scrolltolower="lower" scroll-y>
-      <block v-for="(item, idx) in menuList" :key="idx">
+      <block v-for="(item, idx) in allMovie" :key="idx">
         <view class="movieList" :data-s-id="item.id" @tap="toDetail">
           <view class="imgView skeleton-rect">
             <image mode="aspectFit" :src="item.coverBill"></image>
@@ -11,13 +11,14 @@
           <view class="movieMsg">
             <view class="m_til eli_one skeleton-rect">{{ item.name }}</view>
             <view class="type skeleton-rect"
-              >{{ item.time }}开播
+              >{{ item.startDate }}开播
               <text class="play">
-                播放 <text class="playRed"> 88 </text>场</text
+                播放 <text class="playRed">{{ item.tickets }}</text
+                >场</text
               >
             </view>
             <view class="type skeleton-rect"
-              >收入分成 <text class="playRed"> 88 </text> 元</view
+              >收入分成 <text class="playRed">{{ item.earning }}</text> 元</view
             >
             <view class="type skeleton-rect"
               >总出票 <text class="playRed"> 88 </text> 张</view
@@ -87,35 +88,26 @@ export default {
   },
 
   props: {},
-  onLoad: function() {
-    // app.page.skeletonInitial(this);
-    this.getclassify();
-    this.getRigth();
-    this.getMyMovie();
+  onLoad: function() {},
+  onShow: function() {
+    let _this = this;
+    if (wx.getStorageSync("sessionId")) {
+      wx.navigateTo({
+        url: "../../pages/myVideos/myVideos"
+      });
+      _this.setData({
+        allMovie: [],
+        //重置数据
+        currentPage: 1 //重置当前页面数
+      });
+      _this.getMyMovie(); // 进来获取我的影片
+    } else {
+      wx.navigateTo({
+        url: "../../pages/empower/empower"
+      });
+    }
   },
   methods: {
-    //进来发请求获取左边分类信息
-    getclassify() {
-      Http.$get("films/getClassify").then(res => {
-        if (res.code === 0) {
-          // console.log(res);
-          this.setData({
-            classes: res.data.classes,
-            currentId: res.data.classes[0].id
-          });
-          this.getRigth();
-          getApp().globalData.page.closeSkeleton(this);
-        } else {
-          wx.showToast({
-            title: res.msg,
-            icon: "none",
-            duration: 3000
-          });
-          console.log("失败", res.msg);
-        }
-      });
-    },
-
     // 进来获取我的影片
     getMyMovie() {
       let now_date = new Date();
@@ -182,52 +174,13 @@ export default {
       });
     },
 
-    // 获取右边的数据列表
-    getRigth() {
-      this.setData({
-        show: false
-      });
-      Http.$get(`films/getClassifyFilms`, {
-        id: this.currentId,
-        pageNo: this.currentPage,
-        pageSize: 7
-      }).then(res => {
-        console.log(res);
-
-        if (res.code === 0) {
-          res.data.rows.forEach(item => {
-            item.time = item.date.split(" ")[0];
-            item.star = item.score / 2;
-          });
-          this.setData({
-            total: res.data.total,
-            totalPage: res.data.totalPage,
-            menuList: this.menuList.concat(res.data.rows)
-          });
-        } else {
-          console.log("失败", res.msg);
-          wx.showToast({
-            title: res.msg,
-            icon: "none",
-            duration: 3000
-          });
-        } // 判断是否该隐藏loading状态栏
-
-        if (this.total > 4) {
-          this.setData({
-            show: true
-          });
-        }
-      });
-    },
-
     //  页面上拉触底事件的处理函数
     lower: function() {
       console.log("触底了");
 
       if (this.currentPage < this.totalPage) {
         this.currentPage = this.currentPage + 1;
-        this.getRigth();
+        this.getMyMovie();
       } else {
         this.setData({
           completeType: true
@@ -242,7 +195,10 @@ export default {
         url: "../../pages/movieIntro/movieIntro?id=" + this.toDetailId
       });
     },
-
+    dateFormat(date) {
+      let formatTime = new Date(date).getTime();
+      return formatTime;
+    },
     setData: function(obj) {
       let that = this;
       let keys = [];
@@ -392,9 +348,17 @@ export default {
   padding: 0 10rpx;
   color: #acacac;
 }
+.placeholder {
+  height: 100rpx;
+  background-color: #f4f4f4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .successIcon {
-  display: inline-block;
-  width: 60rpx;
-  height: 60rpx;
+  vertical-align: middle;
+  width: 52rpx;
+  height: 52rpx;
 }
 </style>

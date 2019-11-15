@@ -22,7 +22,7 @@
 // pages/empower/empower.js
 // 引入request
 const Http = require("../../utils/httpRequest.js");
-
+const fetchLogin = require("../../request/fetch").fetchLogin;
 export default {
   data() {
     return {

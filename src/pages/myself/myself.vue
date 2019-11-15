@@ -77,7 +77,7 @@
 //index.js
 //获取应用实例
 // 引入request
-// const Http = require("../../utils/httpRequest.js"); // const skeletonData = require('./skeletonData');
+const Http = require("../../utils/httpRequest.js");
 
 export default {
   data() {

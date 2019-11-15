@@ -1,6 +1,10 @@
-const host = "https://ssl.9jcloud.com/cinema/"; //新域名
-// const host = 'https://ssl.arkcloudcorp.com/cinema/'
+//const url = 'http://118.89.58.186/gatherplatform/weixinapp';
+// const url = 'https://wxminiapp.test.9dwit.com/gatherplatform/weixinapp';
+const url = "https://ssl.9jcloud.com/cinema";
+// const url = "https://ssl.arkcloudcorp.com/aircinema"; //新版的测试域名
 
 module.exports = {
-  LOGINAPI: host + "/issuer/login"
+  //登录
+  // login: url + "/issuer/user/login"
+  login: url + "/issuer/login"
 };

@@ -37,6 +37,33 @@
       "style": {
         "navigationBarTitleText": "用户登录"
       }
+    },
+    {
+      "path": "pages/myPhone/myPhone",
+      "style": {
+        "navigationBarTitleText": "个人信息"
+      }
+    },
+    {
+      "path": "pages/myEarning/myEarning",
+      "style": {
+        "navigationBarTitleText": "我的分成"
+      }
+    },
+    {
+      "path": "pages/myExports/myExports",
+      "style": {
+        "navigationBarTitleText": "我的提成",
+        "usingComponents": {
+          "datetime-picker": "../../wxcomponents/vant/datetime-picker/index"
+        }
+      }
+    },
+    {
+      "path": "pages/OI/OI",
+      "style": {
+        "navigationBarTitleText": "操作说明"
+      }
     }
   ],
   "tabBar": {
