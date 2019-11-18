@@ -76,7 +76,7 @@
         "pagePath": "pages/myVideos/myVideos",
         "iconPath": "static/images/class.png",
         "selectedIconPath": "static/images/class_sel.png",
-        "text": "已播电影"
+        "text": "我的影片"
       },
       {
         "pagePath": "pages/myself/myself",

@@ -28,7 +28,7 @@
           <text class="lineBox arrow_r"></text>
         </view>
       </view>
-      <view class="l_list div_float skeleton-rect" @tap="toMyMovie">
+      <!-- <view class="l_list div_float skeleton-rect" @tap="toMyMovie">
         <view class="iconBox">
           <text class="lineBox movieIcon"></text>
         </view>
@@ -37,7 +37,7 @@
           更多
           <text class="lineBox arrow_r"></text>
         </view>
-      </view>
+      </view> -->
       <view class="l_list div_float skeleton-rect" @tap="toMyEarning">
         <view class="iconBox">
           更多
