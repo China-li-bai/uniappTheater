@@ -1,5 +1,6 @@
 {
   "pages": [
+	 
     {
       "path": "pages/index/index",
       "style": {
@@ -62,7 +63,25 @@
       "style": {
         "navigationBarTitleText": "操作说明"
       }
-    }
+    },
+	{
+		"path":"pages/myEarning/myEarning",
+		"style":{
+			"navigationBarTitleText":"我的收入"
+		}
+	},
+	{
+		"path":"pages/myExports/myExports",
+		"style":{
+			"navigationBarTitleText":"我的提成"
+		}
+	},
+	{
+		"path": "pages/exportDeposit/exportDeposit" ,
+		"style":{
+			"navigationBarTitleText":"提现"
+		}
+	}
   ],
   "tabBar": {
     "list": [
@@ -92,6 +111,9 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "空中影城",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F8F8F8",
+	"usingComponents":{
+		"van-datetime-picker":"/wxcomponents/vant/datetime-picker/index"
+	}
   }
 }

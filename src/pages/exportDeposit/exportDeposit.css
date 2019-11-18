@@ -1,0 +1,134 @@
+.container {
+    min-height: 99.95%;
+    background-color: #f2f2f2;
+    padding-top: 0.1rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.headBox {
+    padding: 0 50rpx;
+    height: 310rpx;
+    background-color: white;
+    margin-top: 20rpx;
+    padding-top: 0.1rpx;
+}
+
+.headBox .hint {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 30rpx;
+}
+
+.headBox .hint text {
+    font-size: 36rpx;
+    color: #46a3ff;
+}
+
+.inputBox {
+    height: 60rpx;
+    line-height: 60rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+    margin-top: 75rpx;
+}
+
+.inputBox .priceIcon {
+    float: left;
+    color: #333;
+    font-size: 60rpx;
+}
+
+.inputBox .i_input {
+    float: left;
+    width: 70%;
+    height: 60rpx;
+    color: #333;
+    font-size: 60rpx;
+    position: relative;
+    margin-left: 20rpx;
+    vertical-align: bottom;
+}
+
+.inputBox .i_input input {
+    position: absolute;
+    bottom: 7rpx;
+    left: 0;
+    color: #333;
+    font-size: 50rpx;
+    height: 60rpx;
+}
+
+.inputBox .allExport {
+    float: right;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.placeClass {
+    font-size: 46rpx;
+    color: #999;
+}
+
+.nextHint {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 30rpx;
+    font-weight: none;
+}
+
+.brankMsgBox {
+    margin-top: 20rpx;
+    background-color: white;
+}
+
+.brankMsgBox .b_list {
+    padding: 0 40rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.b_list .l {
+    float: left;
+    font-size: 30rpx;
+    color: #333;
+}
+
+.b_list .r {
+    float: right;
+    text-align: right;
+    font-size: 0;
+    width: 70%;
+}
+
+.b_list .r input {
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 30rpx;
+    color: #333;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.brankPlace {
+    font-size: 26rpx;
+    color: #666;
+}
+
+.exportBtn {
+    width: 700rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 10rpx;
+    margin: 0 auto;
+    background-color: #46a3ff;
+    text-align: center;
+    color: white;
+    font-size: 36rpx;
+    margin-bottom: 60rpx;
+}
+
+.hoverClass {
+    background-color: #9c9c9c;
+}

@@ -77,6 +77,23 @@ input {
 .lineBox {
   display: inline-block;
 }
+page {
+
+  font-family: 'PingFang SC', Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, Arial, sans-serif;
+}
+
+.demo-margin-left {
+  margin-left: 10px;
+}
+
+.demo-margin-right {
+  margin-right: 10px;
+}
+
+.demo-margin-bottom {
+  display: block;
+  margin-bottom: 15px;
+}
 
 /*文字限制超出一行后变省略号*/
 
