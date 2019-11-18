@@ -45,20 +45,18 @@
       }
     },
     {
-      "path": "pages/myEarning/myEarning",
+      "path": "pages/personMsg/personMsg",
       "style": {
-        "navigationBarTitleText": "我的分成"
+        "navigationBarTitleText": "个人信息"
       }
     },
     {
-      "path": "pages/myExports/myExports",
+      "path": "pages/addBankCard/addBankCard",
       "style": {
-        "navigationBarTitleText": "我的提成",
-        "usingComponents": {
-          "datetime-picker": "../../wxcomponents/vant/datetime-picker/index"
-        }
+        "navigationBarTitleText": "添加银行卡"
       }
     },
+
     {
       "path": "pages/OI/OI",
       "style": {

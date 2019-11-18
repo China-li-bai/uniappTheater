@@ -1,0 +1,81 @@
+/* pages/addBankCard/addBankCard.wxss */
+  
+  .container{
+    padding: 0.1rpx 0;
+    min-height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .imgList{
+    padding: 0 40rpx 0 45rpx;
+    height: 150rpx;
+    line-height: 150rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+  }
+  .imgList .til{
+    float: left;
+    font-size: 30rpx;
+    color: #333333;
+  }
+  .imgList .r_box{
+    float: right;
+    font-size: 0;
+  }
+  .imgList .r_box image{
+    width: 110rpx;
+    height: 110rpx;
+    vertical-align: middle;
+  }
+  .imgList .r_box .arrow_r{
+    margin-left: 40rpx;
+    width: 10rpx;
+    height: 17rpx;
+  }
+  .otherList{
+    height: 100rpx;
+    line-height: 100rpx;
+    padding: 0 40rpx 0 45rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+    font-size: 0;
+  }
+  .otherList .til{
+    float: left;
+    color: #333333;
+    font-size: 30rpx;
+  }
+  .otherList .inputBox{
+    float: right;
+    width: 400rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: right;
+  }
+  .otherList input{
+    width: 350rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    font-size: 30rpx;
+    color: #333333;
+  }
+  .otherList .placeClass{
+    font-size: 24rpx;
+    color: #666666;
+  }
+  .lineBox {
+      margin-top: 30rpx;
+  }
+  .addBankCard {
+      margin-bottom: 60rpx;
+      width: 700rpx;
+      height: 90rpx;
+      line-height: 90rpx;
+      background-color: #46A3FF;
+      color: #fff;
+      border-radius: 10rpx;
+      text-align: center;
+  }
+  .hoverClass{
+      background-color: #9c9c9c;
+  }
