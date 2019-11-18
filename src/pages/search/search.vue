@@ -68,13 +68,16 @@
               ></image>
             </view>
           </view>
-          <view class="keyword" v-if="forbid == ''">
+          <view class="hotKeyBox" v-if="forbid == ''">
             <view
+              class="hotKeyitem"
               v-for="(keyword, index) in hotKeywordList"
               @tap="doSearch(keyword)"
               :key="index"
-              >{{ keyword }}</view
             >
+              <view class="num-box">{{ index + 1 }}</view>
+              <text>{{ keyword }}</text>
+            </view>
           </view>
           <view class="hide-hot-tis" v-else>
             <view>当前搜热门搜索已隐藏</view>
@@ -152,7 +155,7 @@ export default {
         return;
       }
       this.isShowKeywordList = true;
-      //以下示例截取淘宝的关键字，请替换成你的接口
+      //以下示例截取淘宝的关键字，请替换接口
       uni.request({
         url: "https://suggest.taobao.com/sug?code=utf-8&q=" + keyword, //仅为示例
         success: res => {
@@ -378,12 +381,15 @@ view {
   flex-flow: wrap;
   justify-content: flex-start;
 }
+/* 热门搜索 */
+
 .keyword-box .keyword-block .hide-hot-tis {
   display: flex;
   justify-content: center;
   font-size: 28upx;
   color: #6b6b6b;
 }
+
 .keyword-box .keyword-block .keyword > view {
   display: flex;
   justify-content: center;
@@ -395,5 +401,36 @@ view {
   font-size: 28upx;
   background-color: rgb(242, 242, 242);
   color: #6b6b6b;
+}
+.hotKeyBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  color: #333;
+  font-size: 28rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+
+  background-color: #fff;
+  margin-right: 0;
+}
+.hotKeyitem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50%;
+  margin-top: 60rpx;
+}
+.num-box {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background: #46a3ff;
+  color: #fff;
+  text-align: center;
+  font-size: 20rpx;
+  border-radius: 4rpx;
+  margin-right: 15rpx;
 }
 </style>
