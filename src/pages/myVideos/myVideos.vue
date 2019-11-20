@@ -27,7 +27,7 @@
               >本月出票 <text class="playRed"> 88 </text> 张</view
             >
             <view class="type skeleton-rect"><text>￥5.00</text></view>
-            <view class="issBtn" @tap="toShare">分享</view>
+            <view class="issBtn" @tap="toshow()">分享</view>
             <view class="toCheck">查看发布场次 ></view>
           </view>
         </view>
@@ -49,20 +49,22 @@
         </view>
       </view>
     </scroll-view>
-    <view class="popup">
-      <view class="title">您发布的影片都可分享好友播放</view>
-      <view>分享到 ： </view>
-      <view class="conter">
-        <view>
-          <image src="../../static/copyLink.png"></image>
-          <view class="txt">复制分享链接</view>
+    <view v-show="toggle" class="module">
+      <view class="popup">
+        <view class="title">您发布的影片都可分享好友播放</view>
+        <view>分享到 ： </view>
+        <view class="conter">
+          <view>
+            <image src="../../static/copyLink.png"></image>
+            <view class="txt">复制分享链接</view>
+          </view>
+          <view>
+            <image src="../../static/shareLink.png"></image>
+            <view class="txt">生成分享图片</view>
+          </view>
         </view>
-        <view>
-          <image src="../../static/shareLink.png"></image>
-          <view class="txt">生成分享图片</view>
-        </view>
+        <view class="close" @click="toclose">取消</view>
       </view>
-      <view class="close">取消</view>
     </view>
   </view>
 </template>
@@ -98,7 +100,8 @@ export default {
       expect: "",
       reality: "",
       allMovie: "",
-      noneData: false
+      noneData: false,
+      toggle: false // 控制弹出层
     };
   },
 
@@ -123,6 +126,17 @@ export default {
     }
   },
   methods: {
+    // 分享
+    toshow() {
+      this.setData({
+        toggle: true
+      });
+    },
+    toclose() {
+      this.setData({
+        toggle: false
+      });
+    },
     // 进来获取我的影片
     getMyMovie() {
       let now_date = new Date();
@@ -376,6 +390,16 @@ export default {
   vertical-align: middle;
   width: 52rpx;
   height: 52rpx;
+}
+.module {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(7, 7, 7, 0.5);
+  /* opacity: 0.2; */
+  z-index: 3;
 }
 .popup {
   width: 100%;
