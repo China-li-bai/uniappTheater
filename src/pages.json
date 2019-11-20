@@ -1,14 +1,15 @@
 {
   "pages": [
 	  {
+	    "path": "pages/index/index",
+	    "style": {
+	      "navigationBarTitleText": "空中影城"
+	    }
+	  },
+	  {
 		  "path":"pages/search/search"
 	  },
-    {
-      "path": "pages/index/index",
-      "style": {
-        "navigationBarTitleText": "空中影城"
-      }
-    },
+  
     {
       "path": "pages/movieList/movieList",
       "style": {

@@ -3,8 +3,8 @@
     <!-- 内容 -->
     <scroll-view class="contentView" @scrolltolower="lower" scroll-y>
       <block v-for="(item, idx) in allMovie" :key="idx">
-        <view class="movieList" :data-s-id="item.id" @tap="toDetail">
-          <view class="imgView skeleton-rect">
+        <view class="movieList" :data-s-id="item.id">
+          <view class="imgView skeleton-rect" @tap="toDetail">
             <image mode="aspectFit" :src="item.coverBill"></image>
             <view class="atten">{{ item.score }}</view>
           </view>
@@ -27,7 +27,7 @@
               >本月出票 <text class="playRed"> 88 </text> 张</view
             >
             <view class="type skeleton-rect"><text>￥5.00</text></view>
-            <view class="issBtn">发布</view>
+            <view class="issBtn" @tap="toShare">分享</view>
             <view class="toCheck">查看发布场次 ></view>
           </view>
         </view>
@@ -49,6 +49,21 @@
         </view>
       </view>
     </scroll-view>
+    <view class="popup">
+      <view class="title">您发布的影片都可分享好友播放</view>
+      <view>分享到 ： </view>
+      <view class="conter">
+        <view>
+          <image src="../../static/copyLink.png"></image>
+          <view class="txt">复制分享链接</view>
+        </view>
+        <view>
+          <image src="../../static/shareLink.png"></image>
+          <view class="txt">生成分享图片</view>
+        </view>
+      </view>
+      <view class="close">取消</view>
+    </view>
   </view>
 </template>
 
@@ -195,6 +210,7 @@ export default {
         url: "../../pages/movieIntro/movieIntro?id=" + this.toDetailId
       });
     },
+    toShare() {},
     dateFormat(date) {
       let formatTime = new Date(date).getTime();
       return formatTime;
@@ -360,5 +376,53 @@ export default {
   vertical-align: middle;
   width: 52rpx;
   height: 52rpx;
+}
+.popup {
+  width: 100%;
+  height: 565rpx;
+  background: #fff;
+  color: #333;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+
+  padding: 0 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.popup .title {
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: left;
+  font-size: 36rpx;
+}
+.popup .conter {
+  width: 100%;
+  height: 260rpx;
+  margin-top: 45rpx;
+  padding: 0 65rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+}
+.popup .conter .txt {
+  margin-top: 15rpx;
+  font-size: 30rpx;
+}
+.popup .conter image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.popup .close {
+  height: 9orpx;
+  line-height: 90rpx;
+  text-align: center;
+  border: #efefef 1px solid;
+  border-radius: 45rpx;
 }
 </style>
