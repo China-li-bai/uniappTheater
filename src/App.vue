@@ -1,6 +1,8 @@
 <script>
 //app.js
 import api from "./apis/api";
+import request from "./utils/request";
+
 const page = require("./core/page.js");
 const reg = require("./utils/reg.js");
 const Http = require("./utils/httpRequest.js");
@@ -78,8 +80,8 @@ input {
   display: inline-block;
 }
 page {
-
-  font-family: 'PingFang SC', Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, Arial, sans-serif;
+  font-family: "PingFang SC", Helvetica, "STHeiti STXihei", "Microsoft YaHei",
+    Tohoma, Arial, sans-serif;
 }
 
 .demo-margin-left {

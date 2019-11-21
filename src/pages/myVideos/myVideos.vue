@@ -28,7 +28,7 @@
             >
             <view class="type skeleton-rect"><text>￥5.00</text></view>
             <view class="issBtn" @tap="toshow()">分享</view>
-            <view class="toCheck">查看发布场次 ></view>
+            <view class="toCheck" @click=" saveImage()">查看发布场次 ></view>
           </view>
         </view>
       </block>
@@ -66,6 +66,15 @@
         <view class="close" @click="toclose">取消</view>
       </view>
     </view>
+    <painter-uni
+      customStyle="position: absolute; left: -9999rpx;"
+      :palette="template"
+      @imgOK="onImgOK"
+    />
+    <image
+      :src="image"
+      style="width: 654rpx; height: 1000rpx; margin-left:40rpx;"
+    />
   </view>
 </template>
 
@@ -73,7 +82,10 @@
 // 引入request
 
 const Http = require("../../utils/httpRequest.js");
+import PainterUni from "../../components/painter_uni/painter.vue";
+import Card from "../../utils/test.js";
 export default {
+  components: { PainterUni },
   data() {
     return {
       // skeletonData: skeletonData,
@@ -101,7 +113,8 @@ export default {
       reality: "",
       allMovie: "",
       noneData: false,
-      toggle: false // 控制弹出层
+      toggle: false, // 控制弹出层
+      template: {}, //画图的数据
     };
   },
 
@@ -125,7 +138,30 @@ export default {
       });
     }
   },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  created: function() {
+    this.setData({
+      template: new Card().palette()
+    });
+	console.log(this.image)
+  },
   methods: {
+	  // 保存图片\
+	   saveImage() {
+	      wx.saveImageToPhotosAlbum({
+	        filePath: this.imagePath,
+	      });
+	    },
+    onImgOK(e) {
+      this.imagePath = e.detail.path;
+      this.setData({
+        image: this.imagePath
+      });
+      console.log(e);
+    },
+
     // 分享
     toshow() {
       this.setData({
@@ -286,6 +322,7 @@ export default {
   top: 0;
   bottom: 0;
   right: 0;
+  /* position: absolute; */
 }
 
 .movieList {
